@@ -20,16 +20,7 @@ import com.android.systemui.statusbar.policy.TelephonyIcons;
 import com.android.systemui.R;
 
 class WimaxIcons {
-    static final int[][] WIMAX_SIGNAL_STRENGTH = {
-            { R.drawable.stat_sys_data_connected_4g,
-              R.drawable.stat_sys_data_connected_4g,
-              R.drawable.stat_sys_data_connected_4g,
-              R.drawable.stat_sys_data_connected_4g },
-            { R.drawable.stat_sys_data_fully_connected_4g,
-              R.drawable.stat_sys_data_fully_connected_4g,
-              R.drawable.stat_sys_data_fully_connected_4g,
-              R.drawable.stat_sys_data_fully_connected_4g }
-        };
+    static final int[][] WIMAX_SIGNAL_STRENGTH = TelephonyIcons.DATA_SIGNAL_STRENGTH;
 
     static final int WIMAX_DISCONNECTED = WIMAX_SIGNAL_STRENGTH[0][0];
 
