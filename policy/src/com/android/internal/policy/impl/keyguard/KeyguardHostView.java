@@ -293,7 +293,7 @@ public class KeyguardHostView extends KeyguardViewBase {
                 Bitmap backgroundBitmap = BitmapFactory.decodeFile(wallpaperFile);
                 setBackgroundDrawable(new BitmapDrawable(backgroundBitmap));
             } catch (NameNotFoundException e) {
-            //Ignored would be sufficient
+            // Do nothing here
             }
         }
     }
