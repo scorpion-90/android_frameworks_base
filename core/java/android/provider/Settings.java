@@ -3002,6 +3002,12 @@ public final class Settings {
         public static final String QUIET_HOURS_HAPTIC = "quiet_hours_haptic";
 
         /**
+         * Whether to remove the system sounds during quiet hours.
+         * @hide
+         */
+        public static final String QUIET_HOURS_SYSTEM = "quiet_hours_system";
+
+        /**
          * Whether to remove the vibration from outgoing notifications during quiet hours.
          * @hide
          */
@@ -3305,6 +3311,13 @@ public final class Settings {
         public static final String VOLUME_KEYS_CONTROL_RING_STREAM = "volume_keys_control_ring_stream";
 
         /**
+         * Performance profile
+         * @see config_perf_profile_prop in frameworks/base/core/res/res/values/config.xml
+         * @hide
+         */
+        public static final String PERFORMANCE_PROFILE = "performance_profile";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
@@ -3383,6 +3396,7 @@ public final class Settings {
             QUIET_HOURS_START,
             QUIET_HOURS_END,
             QUIET_HOURS_MUTE,
+            QUIET_HOURS_SYSTEM,
             QUIET_HOURS_STILL,
             QUIET_HOURS_DIM,
             SYSTEM_PROFILES_ENABLED,
