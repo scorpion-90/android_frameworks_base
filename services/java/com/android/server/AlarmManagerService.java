@@ -818,13 +818,14 @@ class AlarmManagerService extends IAlarmManager.Stub {
         if (localLOGV) Slog.v(TAG, "UpdateBlockedUids: uid = "+uid +"isBlocked = "+isBlocked);
         synchronized(mLock) {
             if(isBlocked) {
-                for( int i=0; i < mTriggeredUids.size(); i++) {
+                for( int i = 0; i < mTriggeredUids.size(); i++) {
                     if(mTriggeredUids.contains(new Integer(uid))) {
                         if (localLOGV) {
                             Slog.v(TAG,"TriggeredUids has this uid, mBroadcastRefCount="
                                 +mBroadcastRefCount);
                         }
                         mTriggeredUids.remove(new Integer(uid));
+                        i--;
                         mBlockedUids.add(new Integer(uid));
                         if(mBroadcastRefCount > 0){
                             mBroadcastRefCount--;
@@ -846,11 +847,12 @@ class AlarmManagerService extends IAlarmManager.Stub {
                     }
                 }
             } else {
-                for(int i =0; i < mBlockedUids.size(); i++) {
+                for(int i = 0; i < mBlockedUids.size(); i++) {
                     if(!mBlockedUids.remove(new Integer(uid))) {
                         //no more matching uids break from the for loop
                         break;
                      }
+                     i--;
                 }
             }
         }
@@ -1630,11 +1632,11 @@ class AlarmManagerService extends IAlarmManager.Stub {
                 } else {
                     mLog.w("No in-flight alarm for " + pi + " " + intent);
                 }
-                mTriggeredUids.remove(new Integer(uid));
                 if(mBlockedUids.contains(new Integer(uid))) {
                     mBlockedUids.remove(new Integer(uid));
                 } else {
                     if(mBroadcastRefCount > 0){
+                        mTriggeredUids.remove(new Integer(uid));
                         mBroadcastRefCount--;
                         if (mBroadcastRefCount == 0) {
                             mWakeLock.release();
@@ -1662,7 +1664,8 @@ class AlarmManagerService extends IAlarmManager.Stub {
                         // should never happen
                         try {
                         mLog.w("Alarm wakelock still held but sent queue empty");
-                        mWakeLock.setWorkSource(null);
+                        mBroadcastRefCount = 0;
+                        mWakeLock.release();
                         } catch (IllegalArgumentException ex) {
                             ex.printStackTrace();
                         }
