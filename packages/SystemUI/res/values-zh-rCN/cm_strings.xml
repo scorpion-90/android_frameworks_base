@@ -16,8 +16,8 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="accessibility_quick_settings_ringer">声音 <xliff:g id="state" example="Off"> %s </xliff:g>。</string>
-  <string name="accessibility_quick_settings_vibration">震动 <xliff:g id="state" example="Off"> %s </xliff:g>。</string>
+  <string name="accessibility_quick_settings_ringer">声音 <xliff:g id="state" example="Off">%s</xliff:g>。</string>
+  <string name="accessibility_quick_settings_vibration">震动 <xliff:g id="state" example="Off">%s</xliff:g>。</string>
   <string name="dessert_case_settings_cm_title">显示 CM 的吉祥物</string>
   <string name="dessert_case_settings_cm_summary">显示 CM 的吉祥物及 Android 的甜品</string>
   <string name="quick_settings_profile_label">情景模式</string>
@@ -68,7 +68,7 @@
   <string name="navbar_recent_button">任务键</string>
   <string name="navbar_search_button">搜索键</string>
   <string name="navbar_back_button">返回键</string>
-  <string name="navbar_empty_button">空白键</string>
+  <string name="navbar_empty_button">留空</string>
   <string name="navbar_menu_conditional_button">菜单键 (自动隐藏)</string>
   <string name="navbar_menu_always_button">菜单键 (总是显示)</string>
   <string name="navbar_menu_big_button">菜单键</string>
