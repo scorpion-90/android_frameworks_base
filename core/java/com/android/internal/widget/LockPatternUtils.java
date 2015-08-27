@@ -155,8 +155,6 @@ public class LockPatternUtils {
     public final static String LOCKSCREEN_POWER_BUTTON_INSTANTLY_LOCKS
             = "lockscreen.power_button_instantly_locks";
     public final static String LOCKSCREEN_WIDGETS_ENABLED = "lockscreen.widgets_enabled";
-    public final static String LOCKSCREEN_APPLICATION_WIDGET_ENABLED =
-            "lockscreen.application_widget_enabled";
     public final static String LOCKSCREEN_CAMERA_ENABLED = "lockscreen.camera_enabled";
 
     public final static String PASSWORD_HISTORY_KEY = "lockscreen.passwordhistory";
@@ -782,9 +780,18 @@ public class LockPatternUtils {
      * @return The pattern.
      */
     public List<LockPatternView.Cell> stringToPattern(String string) {
-        List<LockPatternView.Cell> result = Lists.newArrayList();
-
         final byte size = getLockPatternSize();
+        return stringToPattern(string, size);
+    }
+
+    /**
+     * Deserialize a pattern.
+     * @param string The pattern serialized with {@link #patternToString}
+     * @param byte The pattern size
+     * @return The pattern.
+     */
+    public List<LockPatternView.Cell> stringToPattern(String string, byte size) {
+        List<LockPatternView.Cell> result = Lists.newArrayList();
         LockPatternView.Cell.updateSize(size);
 
         final byte[] bytes = string.getBytes();
@@ -801,6 +808,16 @@ public class LockPatternUtils {
      * @return The pattern in string form.
      */
     public String patternToString(List<LockPatternView.Cell> pattern) {
+       return patternToString(pattern, getLockPatternSize());
+    }
+
+    /**
+     * Serialize a pattern.
+     * @param pattern The pattern.
+     * @param size The pattern size.
+     * @return The pattern in string form.
+     */
+    public String patternToString(List<LockPatternView.Cell> pattern, byte size) {
         if (pattern == null) {
             return "";
         }
@@ -809,7 +826,7 @@ public class LockPatternUtils {
         byte[] res = new byte[patternSize];
         for (int i = 0; i < patternSize; i++) {
             LockPatternView.Cell cell = pattern.get(i);
-            res[i] = (byte) (cell.getRow() * getLockPatternSize() + cell.getColumn());
+            res[i] = (byte) (cell.getRow() * size + cell.getColumn());
         }
         return new String(res);
     }
@@ -1457,22 +1474,6 @@ public class LockPatternUtils {
 
     public void setWidgetsEnabled(boolean enabled, int userId) {
         setBoolean(LOCKSCREEN_WIDGETS_ENABLED, enabled, userId);
-    }
-
-    public boolean getApplicationWidgetEnabled() {
-        return getApplicationWidgetEnabled(getCurrentOrCallingUserId());
-    }
-
-    public boolean getApplicationWidgetEnabled(int userId) {
-        return getBoolean(LOCKSCREEN_APPLICATION_WIDGET_ENABLED, true, userId);
-    }
-
-    public void setApplicationWidgetEnabled(boolean enabled) {
-        setApplicationWidgetEnabled(enabled, getCurrentOrCallingUserId());
-    }
-
-    public void setApplicationWidgetEnabled(boolean enabled, int userId) {
-        setBoolean(LOCKSCREEN_APPLICATION_WIDGET_ENABLED, enabled, userId);
     }
 
     public boolean getCameraEnabled() {

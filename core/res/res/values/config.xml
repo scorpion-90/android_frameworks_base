@@ -250,14 +250,6 @@
     </string-array>
 
     <!-- List of regexpressions describing the interface (if any) that represent tetherable
-         p2p Go interfaces.  If the device doesn't want to support tethering over P2p this
-         should be empty. -->
-    <string-array translatable="false" name="config_tether_p2p_regexs">
-        <item>"p2p0"</item>
-    </string-array>
-
-
-    <!-- List of regexpressions describing the interface (if any) that represent tetherable
          WiMAX interfaces.  If the device doesn't want to support tethering over Wifi this
          should be empty.  An example would be "softap.*" -->
     <string-array translatable="false" name="config_tether_wimax_regexs">
@@ -1483,6 +1475,10 @@
     <string-array name="config_disabledComponents" translatable="false">
     </string-array>
 
+    <!-- The list of components which should be forced to be enabled. -->
+    <string-array name="config_forceEnabledComponents" translatable="false">
+    </string-array>
+
     <!-- Device supports LED flashlight -->
     <bool name="config_enableTorch">false</bool>
 
@@ -1551,6 +1547,17 @@
     <string-array name="config_auto_perf_activities" translatable="false">
     </string-array>
 
+    <!-- Packages that are allowed to write killswitch values -->
+    <string-array name="config_packagesAllowedAccessToKillSwitch" translatable="false">
+    </string-array>
+
+    <!-- Path to the library that contains the kill switch library -->
+    <string name="config_killSwitchLib" translatable="false"></string>
+
+    <!-- Name of the class which implements the IKillSwitch interface -->
+    <string name="config_killSwitchClass" translatable="false"></string>
+
+
     <!-- Control the behavior when the user long presses the menu button.
             0 - Nothing
             1 - Menu key
@@ -1568,4 +1575,13 @@
     -->
     <bool name="config_proximityCheckOnWake">false</bool>
     <integer name="config_proximityCheckTimeout">250</integer>
+
+    <!-- Ignored sms packages -->
+    <string-array name="config_ignored_sms_packages"></string-array>
+
+    <!-- Whether to always request audio focus for incoming calls.
+         Default is false: silent and vibrate modes will not request audio focus.
+         true: all incoming calls will request audio focus (overriding any active music)
+    -->
+    <bool name="config_alwaysRequestAudioFocusForCalls">false</bool>
 </resources>
